@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
+import { timer } from 'rxjs';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +13,8 @@ import { ProductComponent } from '../product/product.component';
 })
 export class CartComponent {
   cartItems: (Product | null)[] = [];
+
+  constructor(private appService: AppService) { }
 
   getTotalPrice(): number {
     return this.cartItems.reduce((sum, item) => sum + (item ? item.price : 0), 0);
@@ -33,9 +37,11 @@ export class CartComponent {
     const reload = side === 'left' ? 'reloading-left' : 'reloading-right';
     if (productElement) {
       productElement.classList.add(reload);
-      setTimeout(() => {
+      this.appService.setAnimating(true);
+      timer(500).subscribe(() => {
+        this.appService.setAnimating(false);
         productElement.classList.remove(reload);
-      }, 700);
+      });
     }
   }
 

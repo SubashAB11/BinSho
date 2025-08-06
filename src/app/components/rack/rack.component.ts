@@ -1,17 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
+import { AppService } from '../../services/app.service';
+import { Observable, tap } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-rack',
-  imports: [DragDropModule, ProductComponent],
+  imports: [DragDropModule, ProductComponent, AsyncPipe],
   templateUrl: './rack.component.html',
   styleUrl: './rack.component.scss'
 })
-export class RackComponent {
+export class RackComponent implements OnInit {
   @Input() products: (Product | null)[] = [];
   @Input() rackSide!: string;
+
+  isAnimating!: Observable<boolean>;
+
+  constructor(private appService: AppService) { }
+
+  ngOnInit(): void {
+    this.isAnimating = this.appService.getAnimating();
+  }
 
   onDrop(event: CdkDragDrop<(Product | null)[] | Product[]>) {
     if (event.previousContainer === event.container) {
