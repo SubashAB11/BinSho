@@ -1,9 +1,0 @@
-<div class="rack-container" id="rackDropList" cdkDropList [cdkDropListData]="products" (cdkDropListDropped)="onDrop($event)">
-
-    @for (i of [0,1,2,3,4]; track i) {
-    <div class="product-container">
-        <app-product [product]="products[i]!" cdkDrag></app-product>
-    </div>
-    }
-
-</div>
