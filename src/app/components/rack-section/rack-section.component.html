@@ -2,9 +2,9 @@
     <app-cart></app-cart>
     @for (section of rackSections; track section) {
     <div class="rack-section-container">
-        <app-rack [products]="section.leftRack"></app-rack>
+        <app-rack [products]="section.leftRack" [rackSide]="'left'"></app-rack>
         <div class="cart"></div>
-        <app-rack [products]="section.rightRack"></app-rack>
+        <app-rack [products]="section.rightRack" [rackSide]="'right'"></app-rack>
     </div>
     }
 </div>

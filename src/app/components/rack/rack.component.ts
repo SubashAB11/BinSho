@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
 
 @Component({
@@ -11,17 +11,11 @@ import { ProductComponent } from '../product/product.component';
 })
 export class RackComponent {
   @Input() products: (Product | null)[] = [];
+  @Input() rackSide!: string;
 
   onDrop(event: CdkDragDrop<(Product | null)[] | Product[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
     }
   }
 

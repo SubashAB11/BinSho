@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
 
 @Component({
@@ -20,12 +20,22 @@ export class CartComponent {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      const draggedItem = event.previousContainer.data[event.previousIndex];
+      this.addAnimation(draggedItem, event.item.data);
+      if (draggedItem) {
+        event.container.data.splice(event.currentIndex, 0, draggedItem);
+      }
+    }
+  }
+
+  addAnimation(draggedItem: Product | null, side: string) {
+    const productElement = document.querySelector(`#product-${draggedItem?.id}`);
+    const reload = side === 'left' ? 'reloading-left' : 'reloading-right';
+    if (productElement) {
+      productElement.classList.add(reload);
+      setTimeout(() => {
+        productElement.classList.remove(reload);
+      }, 700);
     }
   }
 

@@ -1,6 +1,6 @@
 <div class="cart" id="cartDropList" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="cartItems"
     (cdkDropListDropped)="onDrop($event)">
     @for (product of cartItems; track trackByIndex($index, product)) {
-    <app-product [product]="product" cdkDrag></app-product>
+    <app-product [product]="product" cdkDrag cdkDragBoundary=".cart"></app-product>
     }
 </div>
