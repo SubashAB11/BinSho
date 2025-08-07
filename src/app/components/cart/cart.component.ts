@@ -40,22 +40,14 @@ export class CartComponent {
     const dropX = dropEvent.clientX - cartRect.left - productWidth / 2;
     const dropY = dropEvent.clientY - cartRect.top - productHeight / 2;
 
-    this.addAnimation(draggedItem, event.item.data);
-    event.container.data.splice(event.currentIndex, 0, draggedItem);
+    const newItem = {
+      ...draggedItem,
+      x: dropX,
+      y: dropY
+    };
 
-    setTimeout(() => {
-      this.positionNewlyAddedProduct(dropX, dropY);
-    });
-  }
-
-  positionNewlyAddedProduct(x: number, y: number): void {
-    const cartElement = this.cartElement.nativeElement as HTMLElement;
-    const productElements = cartElement.querySelectorAll('#cartProduct');
-    const newlyAddedProduct = productElements[productElements.length - 1] as HTMLElement;
-
-    if (newlyAddedProduct) {
-      this.renderer.setStyle(newlyAddedProduct, 'transform', `translate(${x}px, ${y}px)`);
-    }
+    this.addAnimation(newItem, event.item.data);
+    event.container.data.splice(event.currentIndex, 0, newItem);
   }
 
   addAnimation(draggedItem: Product, side: string) {
@@ -69,9 +61,5 @@ export class CartComponent {
         productElement.classList.remove(reload);
       });
     }
-  }
-
-  trackByIndex(index: number, item: Product): number {
-    return index;
   }
 }
