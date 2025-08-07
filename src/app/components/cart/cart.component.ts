@@ -21,7 +21,7 @@ export class CartComponent {
   constructor(private appService: AppService, private renderer: Renderer2) { }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((sum, item) => sum + (item ? item.price : 0), 0);
+    return parseInt(this.cartItems.reduce((sum, item) => sum + (item ? item.price : 0), 0));
   }
 
   onDrop(event: CdkDragDrop<any>) {

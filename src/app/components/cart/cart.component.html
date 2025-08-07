@@ -1,3 +1,4 @@
+<div class="total">₹{{getTotalPrice()}}</div>
 <div #cart class="cart" id="cartDropList" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListData]="cartItems"
     (cdkDropListDropped)="onDrop($event)">
     @for (product of cartItems; track trackByIndex($index, product)) {
