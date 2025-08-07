@@ -1,4 +1,4 @@
-@import '../../shared/variables';
+@use '../../shared/variables' as *;
 
 .rack-section-container {
   height: 101vh;
