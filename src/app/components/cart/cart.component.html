@@ -1,5 +1,6 @@
-<div class="cart" id="cartDropList" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListData]="cartItems" (cdkDropListDropped)="onDrop($event)">
+<div #cart class="cart" id="cartDropList" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListData]="cartItems"
+    (cdkDropListDropped)="onDrop($event)">
     @for (product of cartItems; track trackByIndex($index, product)) {
-    <app-product [product]="product" appMovable></app-product>
+    <app-product [product]="product" appMovable id="cartProduct"></app-product>
     }
 </div>

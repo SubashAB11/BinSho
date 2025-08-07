@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { CdkDragDrop, CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
 import { timer } from 'rxjs';
 import { AppService } from '../../services/app.service';
@@ -13,20 +13,48 @@ import { MovableDirective } from '../../directives/movable.directive';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  cartItems: Product[] = [];
 
-  constructor(private appService: AppService) { }
+  @ViewChild('cart', { static: true }) cartElement!: ElementRef;
+
+  cartItems: any[] = [];
+
+  constructor(private appService: AppService, private renderer: Renderer2) { }
 
   getTotalPrice(): number {
     return this.cartItems.reduce((sum, item) => sum + (item ? item.price : 0), 0);
   }
 
-  onDrop(event: CdkDragDrop<Product[]>) {
+  onDrop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) return;
+
     const draggedItem = event.previousContainer.data[event.previousIndex];
+    if (!draggedItem) return;
+
+    const cartRect = this.cartElement.nativeElement.getBoundingClientRect();
+    const dropEvent = event.event as DragEvent;
+
+    const draggedElement = event.item.element.nativeElement as HTMLElement;
+    const productWidth = draggedElement.offsetWidth;
+    const productHeight = draggedElement.offsetHeight;
+
+    const dropX = dropEvent.clientX - cartRect.left - productWidth / 2;
+    const dropY = dropEvent.clientY - cartRect.top - productHeight / 2;
+
     this.addAnimation(draggedItem, event.item.data);
-    if (draggedItem) {
-      event.container.data.splice(event.currentIndex, 0, draggedItem);
+    event.container.data.splice(event.currentIndex, 0, draggedItem);
+
+    setTimeout(() => {
+      this.positionNewlyAddedProduct(dropX, dropY);
+    });
+  }
+
+  positionNewlyAddedProduct(x: number, y: number): void {
+    const cartElement = this.cartElement.nativeElement as HTMLElement;
+    const productElements = cartElement.querySelectorAll('#cartProduct');
+    const newlyAddedProduct = productElements[productElements.length - 1] as HTMLElement;
+
+    if (newlyAddedProduct) {
+      this.renderer.setStyle(newlyAddedProduct, 'transform', `translate(${x}px, ${y}px)`);
     }
   }
 
