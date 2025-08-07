@@ -21,8 +21,8 @@ export class RackSectionComponent implements OnInit {
     console.log('Loading next rack section...');
 
     const section = {
-      leftRack: this.createRandomProducts(5),
-      rightRack: this.createRandomProducts(5),
+      leftRack: this.createRandomProducts(4),
+      rightRack: this.createRandomProducts(4),
     };
     this.rackSections.push(section);
   }
@@ -31,12 +31,12 @@ export class RackSectionComponent implements OnInit {
 
   createRandomProducts(count: number): Product[] {
     const images = [
-      'assets/images/item1.png',
-      'assets/images/item2.png',
-      'assets/images/item3.png',
-      'assets/images/item4.png',
-      'assets/images/item5.png',
-      'assets/images/item6.png',
+      'item1',
+      'item2',
+      'item3',
+      'item4',
+      'item5',
+      'item6',
     ];
 
     const products: Product[] = [];

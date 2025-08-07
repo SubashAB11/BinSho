@@ -1,7 +1,7 @@
 @if (product) {
 <div class="product-card">
-    <!-- <div><img [src]="product.image" [alt]="product.name" /></div> -->
-    <div class="product-name">{{ product.name }}</div>
     <div class="product-price">₹{{ product.price }}</div>
+    <div><img [src]="`assets/images/${product.image}.svg`" [alt]="product.name" /></div>
+    <div class="product-name">{{ product.name }}</div>
 </div>
 }
