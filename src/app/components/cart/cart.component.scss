@@ -4,21 +4,13 @@
   border-radius: 8px;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(0, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
-  gap: 10px;
   padding: 15px;
-  overflow-y: auto;
+  position: relative;
+  overflow: hidden;
 }
 
 app-product {
-  display: inline-block;
-  box-sizing: border-box;
-  height: fit-content;
-  width: fit-content;
+  position: absolute;
 }
 
 .cart h3 {
@@ -42,19 +34,10 @@ app-product {
 }
 
 // cdk specific
-
-.cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.cdk-drop-list-dragging {
+  opacity: 0.5;
 }
 
-.cdk-drag-placeholder {
-    opacity: 0;
-}
-
-.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+.cdk-drop-list-receiving {
+  border: 3px dashed red;
 }
