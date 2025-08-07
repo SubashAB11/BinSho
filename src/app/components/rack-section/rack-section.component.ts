@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { RackComponent } from '../rack/rack.component';
 import { CartComponent } from '../cart/cart.component';
@@ -10,16 +10,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   templateUrl: './rack-section.component.html',
   styleUrl: './rack-section.component.scss'
 })
-export class RackSectionComponent implements OnInit {
+export class RackSectionComponent implements OnInit, AfterViewInit {
   rackSections: { leftRack: Product[]; rightRack: Product[] }[] = [];
+  isLoading = false;
 
   ngOnInit() {
-    this.loadNextRackSection();
-  }
-
-  loadNextRackSection() {
-    console.log('Loading next rack section...');
-
     const section = {
       leftRack: this.createRandomProducts(4),
       rightRack: this.createRandomProducts(4),
@@ -27,8 +22,36 @@ export class RackSectionComponent implements OnInit {
     this.rackSections.push(section);
   }
 
-  rackId = 0;
+  ngAfterViewInit(): void {
+    this.scrollToBottom();
+  }
 
+  scrollToBottom() {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: document.body.scrollHeight });
+    });
+  }
+
+  async loadNextRackSection() {
+    const oldScrollHeight = document.documentElement.scrollHeight;
+    const oldScrollTop = window.scrollY;
+
+    const section = {
+      leftRack: this.createRandomProducts(4),
+      rightRack: this.createRandomProducts(4),
+    };
+    this.rackSections.unshift(section);
+
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    requestAnimationFrame(() => {
+      const newScrollHeight = document.documentElement.scrollHeight;
+      const delta = newScrollHeight - oldScrollHeight;
+      window.scrollTo({ top: oldScrollTop + delta });
+    });
+  }
+
+  rackId = 0;
   createRandomProducts(count: number): Product[] {
     const images = [
       'item1',
@@ -58,15 +81,16 @@ export class RackSectionComponent implements OnInit {
     return products;
   }
 
-
   @HostListener('window:scroll', [])
   onScroll(): void {
     const threshold = 100;
-    const position = window.innerHeight + window.scrollY;
-    const height = document.body.offsetHeight;
+    const scrollTop = window.scrollY;
 
-    if (position >= height - threshold) {
-      this.loadNextRackSection();
+    if (scrollTop <= threshold && !this.isLoading) {
+      this.isLoading = true;
+      this.loadNextRackSection().then(() => {
+        this.isLoading = false;
+      });
     }
   }
 }
