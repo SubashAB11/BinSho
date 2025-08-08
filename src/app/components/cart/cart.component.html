@@ -1,8 +1,10 @@
-<div class="total">₹{{getTotalPrice()}}</div>
-<div #cart class="cart" id="cartDropList" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListData]="cartItems"
-    (cdkDropListDropped)="onDrop($event)">
-    @for (product of cartItems; track product.id) {
-    <app-product [product]="product" appMovable
-        [style.transform]="`translate(${product.x || 0}px, ${product.y || 0}px)`"></app-product>
-    }
+<div class="cart-container">
+    <div class="total">₹{{getTotalPrice()}}</div>
+    <div #cart class="cart" id="cartDropList" cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListData]="cartItems"
+        (cdkDropListDropped)="onDrop($event)">
+        @for (product of cartItems; track product.id) {
+        <app-product [product]="product" appMovable
+            [style.transform]="`translate(${product.x || 0}px, ${product.y || 0}px)`"></app-product>
+        }
+    </div>
 </div>
