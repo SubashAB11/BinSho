@@ -58,7 +58,7 @@ export class MovableDirective implements AfterViewInit {
 
       const progress = newY / (this.cartBounds.height - elemHeight);
 
-      const perspectiveBoost = 40; // adjust based on rotation
+      const perspectiveBoost = 55; // adjust based on rotation
       const maxX = this.cartBounds.width - elemWidth + progress * perspectiveBoost;
       const maxY = this.cartBounds.height - elemHeight;
 

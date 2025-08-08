@@ -40,3 +40,8 @@
     top: 0;
     right: 5px;
 }
+
+.cart-image {
+    filter: drop-shadow(0 0 0 black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 3px black) drop-shadow(0 0 4px black);
+    cursor: grab;
+}
