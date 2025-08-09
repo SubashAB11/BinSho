@@ -12,43 +12,34 @@ import { MinimalistSectionComponent } from '../minimalist-section/minimalist-sec
   styleUrl: './rack-section.component.scss'
 })
 export class RackSectionComponent implements OnInit {
-  rackSections: { leftRack: Product[]; rightRack: Product[] }[] = [];
+  rackSections: { leftRack: Product[]; rightRack: Product[]; theme: string }[] = [];
 
   ngOnInit() {
     this.loadNextRackSection();
   }
 
   loadNextRackSection() {
-    const section = {
-      leftRack: this.createRandomProducts(4),
-      rightRack: this.createRandomProducts(4),
-    };
-    this.rackSections.push(section);
+    const thm = Math.random() > 0.5 ? 'two-d' : 'minimalist';
+    for (let i = 0; i < 2; i++) {
+      const section = {
+        leftRack: this.createRandomProducts(4, thm),
+        rightRack: this.createRandomProducts(4, thm),
+        theme: thm
+      };
+      this.rackSections.push(section);
+    }
+
+    if (this.rackSections.length > 9) {
+      this.rackSections.splice(0, 2);
+    }
   }
 
   rackId = 0;
 
-  createRandomProducts(count: number): Product[] {
-    // const images = [
-    //   'item1.svg',
-    //   'item2.svg',
-    //   'item3.svg',
-    //   'item4.svg',
-    //   'item5.svg',
-    //   'item6.svg',
-    //   'item7.svg',
-    //   'item8.svg',
-    // ];
-    
-    const images = [
-      'mini1.png',
-      'mini2.png',
-      'mini3.png',
-      'mini4.png',
-      'mini5.png',
-      'mini6.png',
-      'mini7.png',
-    ];
+  createRandomProducts(count: number, theme: string): Product[] {
+    const images = theme === 'two-d' ?
+      ['item1.svg', 'item2.svg', 'item3.svg', 'item4.svg', 'item5.svg', 'item6.svg', 'item7.svg', 'item8.svg'] :
+      ['mini1.png', 'mini2.png', 'mini3.png', 'mini4.png', 'mini5.png', 'mini6.png', 'mini7.png'];
 
     const products: Product[] = [];
 

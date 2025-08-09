@@ -4,7 +4,12 @@
         <app-cart [totalClass]="'minimalist-total'"></app-cart>
     </div>
     @for (section of rackSections; track section) {
-    <!-- <app-two-d-section [section]="section"></app-two-d-section> -->
+
+    @if(section.theme === 'two-d') {
+    <app-two-d-section [section]="section"></app-two-d-section>
+    } @else if (section.theme === 'minimalist') {
     <app-minimalist-section [section]="section"></app-minimalist-section>
+    }
+    
     }
 </div>
