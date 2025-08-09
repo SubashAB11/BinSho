@@ -1,7 +1,10 @@
-@if (product) {
+@if (!isCart && product) {
 <div class="product-card">
     <div class="product-price">₹{{ product.price }}</div>
     <div><img [src]="`assets/images/${product.image}.svg`" [alt]="product.name" /></div>
     <div class="product-name">{{ product.name }}</div>
 </div>
+}
+@if(isCart && product) {
+<div><img class="cart-image" [src]="`assets/images/${product.image}.svg`" [alt]="product.name" /></div>
 }

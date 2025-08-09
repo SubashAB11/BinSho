@@ -4,11 +4,10 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
 import { timer } from 'rxjs';
 import { AppService } from '../../services/app.service';
-import { MovableDirective } from '../../directives/movable.directive';
 
 @Component({
   selector: 'app-cart',
-  imports: [DragDropModule, ProductComponent, MovableDirective],
+  imports: [DragDropModule, ProductComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -47,7 +46,7 @@ export class CartComponent {
     };
 
     this.addAnimation(newItem, event.item.data);
-    event.container.data.splice(event.currentIndex, 0, newItem);
+    this.cartItems.push(newItem);
   }
 
   addAnimation(draggedItem: Product, side: string) {

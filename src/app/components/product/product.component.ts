@@ -9,5 +9,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-  @Input() product: Product | undefined | null;
+  @Input() product: Product | undefined;
+  @Input() isCart: boolean = false;
 }
