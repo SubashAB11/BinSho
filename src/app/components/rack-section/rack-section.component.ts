@@ -1,10 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { TwoDSectionComponent } from '../two-d-section/two-d-section.component';
+import { CartComponent } from '../cart/cart.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-rack-section',
-  imports: [TwoDSectionComponent],
+  imports: [TwoDSectionComponent, CartComponent, DragDropModule],
   templateUrl: './rack-section.component.html',
   styleUrl: './rack-section.component.scss'
 })

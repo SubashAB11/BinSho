@@ -1,1 +1,9 @@
-<app-two-d-section [rackSections]="rackSections"></app-two-d-section>
+<div cdkDropListGroup>
+    <div class="cart-app">
+        <img src="assets/images/cart_img.png" alt="cart-image">
+        <app-cart></app-cart>
+    </div>
+    @for (section of rackSections; track section) {
+    <app-two-d-section [section]="section"></app-two-d-section>
+    }
+</div>
