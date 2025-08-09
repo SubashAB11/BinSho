@@ -13,8 +13,9 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './rack.component.scss'
 })
 export class RackComponent implements OnInit {
-  @Input() products: (Product | null)[] = [];
-  @Input() rackSide!: string;
+  @Input({ required: true }) products: (Product | null)[] = [];
+  @Input({ required: true }) rackSide!: string;
+  @Input({ required: true }) theme!: string;
 
   isAnimating!: Observable<boolean>;
 

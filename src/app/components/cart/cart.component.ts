@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
@@ -12,7 +12,7 @@ import { AppService } from '../../services/app.service';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-
+  @Input({ required: true }) totalClass!: string;
   @ViewChild('cart', { static: true }) cartElement!: ElementRef;
 
   cartItems: any[] = [];

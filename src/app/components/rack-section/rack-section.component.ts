@@ -29,13 +29,25 @@ export class RackSectionComponent implements OnInit {
   rackId = 0;
 
   createRandomProducts(count: number): Product[] {
+    // const images = [
+    //   'item1.svg',
+    //   'item2.svg',
+    //   'item3.svg',
+    //   'item4.svg',
+    //   'item5.svg',
+    //   'item6.svg',
+    //   'item7.svg',
+    //   'item8.svg',
+    // ];
+    
     const images = [
-      'item1',
-      'item2',
-      'item3',
-      'item4',
-      'item5',
-      'item6',
+      'mini1.png',
+      'mini2.png',
+      'mini3.png',
+      'mini4.png',
+      'mini5.png',
+      'mini6.png',
+      'mini7.png',
     ];
 
     const products: Product[] = [];

@@ -18,7 +18,7 @@
 
 .product-card img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .product-name,
@@ -44,4 +44,26 @@
 .cart-image {
     filter: drop-shadow(0 0 0 black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 3px black) drop-shadow(0 0 4px black);
     cursor: grab;
+    width: 100px;
+    height: 100px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+}
+
+.minimalist-image {
+    height: 125px;
+    width: 140px;
+    cursor: grab;
+    filter: drop-shadow(-13px 5px 10px $minimalist-shadow-color) drop-shadow(0px 0px 1px $minimalist-shadow-color-dark);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }

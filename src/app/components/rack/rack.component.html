@@ -2,9 +2,14 @@
     (cdkDropListDropped)="onDrop($event)">
     @for (i of [0,1,2,3]; track i) {
     <div class="product-container">
-        <app-product [id]="'product-' + products[i]!.id" [product]="products[i]!" cdkDrag
+
+        <app-product [id]="'product-' + products[i]!.id" [product]="products[i]!" [theme]="theme" cdkDrag
             cdkDragPreviewContainer="parent" [cdkDragData]="rackSide" [cdkDragDisabled]="isAnimating | async">
         </app-product>
+
+        @if(theme === 'minimalist') {
+        <div class="shelf"></div>
+        }
     </div>
     }
 </div>
