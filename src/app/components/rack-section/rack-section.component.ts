@@ -1,12 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { RackComponent } from '../rack/rack.component';
-import { CartComponent } from '../cart/cart.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TwoDSectionComponent } from '../two-d-section/two-d-section.component';
 
 @Component({
   selector: 'app-rack-section',
-  imports: [RackComponent, CartComponent, DragDropModule],
+  imports: [TwoDSectionComponent],
   templateUrl: './rack-section.component.html',
   styleUrl: './rack-section.component.scss'
 })
@@ -18,8 +16,6 @@ export class RackSectionComponent implements OnInit {
   }
 
   loadNextRackSection() {
-    console.log('Loading next rack section...');
-
     const section = {
       leftRack: this.createRandomProducts(4),
       rightRack: this.createRandomProducts(4),
