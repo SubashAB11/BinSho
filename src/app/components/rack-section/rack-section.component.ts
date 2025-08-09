@@ -3,10 +3,11 @@ import { Product } from '../../models/product.model';
 import { TwoDSectionComponent } from '../two-d-section/two-d-section.component';
 import { CartComponent } from '../cart/cart.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MinimalistSectionComponent } from '../minimalist-section/minimalist-section.component';
 
 @Component({
   selector: 'app-rack-section',
-  imports: [TwoDSectionComponent, CartComponent, DragDropModule],
+  imports: [TwoDSectionComponent, CartComponent, DragDropModule, MinimalistSectionComponent],
   templateUrl: './rack-section.component.html',
   styleUrl: './rack-section.component.scss'
 })

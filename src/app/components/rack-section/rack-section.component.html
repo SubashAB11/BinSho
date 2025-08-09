@@ -1,9 +1,10 @@
 <div cdkDropListGroup>
     <div class="cart-app">
-        <img src="assets/images/cart_img.png" alt="cart-image">
+        <img src="assets/images/cart_img_2d.png" alt="cart-image">
         <app-cart></app-cart>
     </div>
     @for (section of rackSections; track section) {
     <app-two-d-section [section]="section"></app-two-d-section>
+    <!-- <app-minimalist-section [section]="section"></app-minimalist-section> -->
     }
 </div>
