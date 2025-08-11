@@ -51,7 +51,7 @@ export class RackSectionComponent implements OnInit {
 
     for (let i = 0; i < count; i++) {
       const randomIndex = Math.floor(Math.random() * images.length);
-      const randomPrice = parseFloat((Math.random() * 1000 + 100).toFixed(2));
+      const randomPrice = parseInt((Math.random() * 1000 + 100).toFixed(2));
 
       products.push({
         id: this.rackId,
