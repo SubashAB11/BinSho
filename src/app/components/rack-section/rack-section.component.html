@@ -1,19 +1,24 @@
 <div cdkDropListGroup>
+    <ng-container *ngFor="let section of rackSections; trackBy: trackById">
+        <ng-container [ngSwitch]="section.theme">
+            <app-two-d-section *ngSwitchCase="Themes.TWO_D" [ngClass]="'section-' + section.id" [section]="section">
+            </app-two-d-section>
 
-    @for (section of rackSections; track section) {
+            <app-minimalist-section *ngSwitchCase="Themes.MINIMALIST" [ngClass]="'section-' + section.id"
+                [section]="section">
+            </app-minimalist-section>
 
-    @if(section.theme === Themes.TWO_D) {
-    <app-two-d-section [class]="`section-${section.id}`" [section]="section"></app-two-d-section>
-    } @else if (section.theme === Themes.MINIMALIST) {
-    <app-minimalist-section [class]="`section-${section.id}`" [section]="section"></app-minimalist-section>
-    } @else if (section.theme === Themes.CYBERPUNK) {
-    <app-cyberpunk-section [class]="`section-${section.id}`" [section]="section"></app-cyberpunk-section>
-    }
+            <app-cyberpunk-section *ngSwitchCase="Themes.CYBERPUNK" [ngClass]="'section-' + section.id"
+                [section]="section">
+            </app-cyberpunk-section>
+        </ng-container>
+    </ng-container>
 
-    }
-
-    <div class="cart-app">
-        <img src="assets/images/cart_img_cyberpunk.png" alt="cart-image">
-        <app-cart [totalClass]="'cyberpunk-total'"></app-cart>
+    <div class="cart-app" aria-hidden="true">
+        <img class="cart-current" [ngClass]="{'minimalist-shadow':currentTheme === Themes.MINIMALIST}"
+            [src]="currentCartImage" alt="cart current" />
+        <img class="cart-next" [ngClass]="{'minimalist-shadow':currentTheme === Themes.MINIMALIST}"
+            [src]="nextCartImage" alt="cart next" />
+        <app-cart [totalClass]="`${currentTheme}-total`"></app-cart>
     </div>
 </div>

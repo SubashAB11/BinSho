@@ -7,11 +7,28 @@
   transform: translate(-50%, -50%);
   height: 95%;
   width: 30%;
+  pointer-events: none;
 
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: fill;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .cart-current {
+    z-index: 1;
+    clip-path: inset(0% -20% 0% -20%);
+  }
+
+  .cart-next {
+    z-index: 2;
+    clip-path: inset(100% -20% 0% -20%);
   }
 
   app-cart {
@@ -20,14 +37,13 @@
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: auto;
+    z-index: 4;
   }
 }
 
-
-//minimalist theme alone
-
 .cart-app {
-  img {
+  .minimalist-shadow {
     filter: drop-shadow(-17px 42px 11px $minimalist-shadow-color);
   }
 }
