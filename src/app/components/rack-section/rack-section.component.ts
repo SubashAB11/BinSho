@@ -22,10 +22,12 @@ export class RackSectionComponent implements OnInit {
     this.loadNextRackSection();
   }
 
+  secId = 0;
   loadNextRackSection() {
     const thm = Math.random() > 0.5 ? Themes.TWO_D : Math.random() > 0.5 ? Themes.CYBERPUNK : Themes.MINIMALIST;
     for (let i = 0; i < 2; i++) {
       const section = {
+        id: this.secId,
         leftRack: this.createRandomProducts(4, thm),
         rightRack: this.createRandomProducts(4, thm),
         theme: thm
@@ -36,6 +38,8 @@ export class RackSectionComponent implements OnInit {
     if (this.rackSections.length > 9) {
       this.rackSections.splice(0, 2);
     }
+
+    this.secId++;
   }
 
   rackId = 0;

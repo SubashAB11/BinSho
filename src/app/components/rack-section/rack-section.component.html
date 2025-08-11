@@ -1,15 +1,15 @@
 <div cdkDropListGroup>
 
     @for (section of rackSections; track section) {
-        
-        @if(section.theme === Themes.TWO_D) {
-            <app-two-d-section [section]="section"></app-two-d-section>
-        } @else if (section.theme === Themes.MINIMALIST) {
-            <app-minimalist-section [section]="section"></app-minimalist-section>
-        } @else if (section.theme === Themes.CYBERPUNK) {
-            <app-cyberpunk-section [section]="section"></app-cyberpunk-section>
-        }
-        
+
+    @if(section.theme === Themes.TWO_D) {
+    <app-two-d-section [class]="`section-${section.id}`" [section]="section"></app-two-d-section>
+    } @else if (section.theme === Themes.MINIMALIST) {
+    <app-minimalist-section [class]="`section-${section.id}`" [section]="section"></app-minimalist-section>
+    } @else if (section.theme === Themes.CYBERPUNK) {
+    <app-cyberpunk-section [class]="`section-${section.id}`" [section]="section"></app-cyberpunk-section>
+    }
+
     }
 
     <div class="cart-app">
