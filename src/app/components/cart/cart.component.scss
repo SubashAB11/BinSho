@@ -46,12 +46,8 @@ app-product {
 }
 
 .total {
-  background-color: black;
-  color: $font-white;
   font-family: $font-family;
-  font-size: $font-size-lg;
   font-style: $font-style;
-  font-weight: $font-weight;
   line-height: $line-height;
   position: absolute;
   z-index: 1;
@@ -64,30 +60,38 @@ app-product {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.two-d-total {
   border: 5px solid $border-cart;
   border-radius: 5px;
+  background-color: black;
+  color: $font-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight;
 }
 
 .minimalist-total {
   background-color: $minimalist-primary-color;
   color: $minimalist-background-color;
-  font-family: $font-family;
   font-size: $minimalist-font-size-total;
-  font-style: $font-style;
   font-weight: $font-weight;
-  line-height: $line-height;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  width: fit-content;
-  padding: 0 10%;
-  height: 65px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 10px;
+}
+
+.cyberpunk-total {
+  background-color: $cyberpunk-background-color;
+  color: $cyberpunk-primary-color;
+  font-size: $cyberpunk-font-size-total;
+  font-weight: $cyberpunk-font-weight;
+  border-radius: 10px;
+  border: 3px solid white;
+  box-shadow: 0 0 5px $cyberpunk-primary-color,
+    0 0 5px $cyberpunk-primary-color,
+    0 0 20px $cyberpunk-primary-color,
+    inset 0 0 5px 2px $cyberpunk-primary-color;
+  text-shadow: 0 0 2px $cyberpunk-primary-color,
+    0 0 2px $cyberpunk-primary-color;
 }
 
 //cdk specific

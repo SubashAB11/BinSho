@@ -1,0 +1,19 @@
+<div class="rack-section-container">
+    @if (section.theme === Themes.CYBERPUNK) {
+        <img src="../../../assets/images/cyberpunk-bg.png" alt="cyberpunk background">
+    }
+
+    <div class="rack-floater">
+        <div class="left-rack-container">
+            <div class="rack">
+                <app-rack [products]="section.leftRack" [rackSide]="'left'" [theme]="Themes.CYBERPUNK"></app-rack>
+            </div>
+        </div>
+        <div class="cart-placeholder"></div>
+        <div class="right-rack-container">
+            <div class="rack">
+                <app-rack [products]="section.rightRack" [rackSide]="'right'" [theme]="Themes.CYBERPUNK"></app-rack>
+            </div>
+        </div>
+    </div>
+</div>

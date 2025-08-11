@@ -1,5 +1,5 @@
 <div class="cart-container">
-    <div [class]="totalClass">₹{{getTotalPrice()}}</div>
+    <div [class]="totalClass + ' total'">₹{{getTotalPrice()}}</div>
     <div class="drop-area" cdkDropList [cdkDropListData]="cartItems" (cdkDropListDropped)="onDrop($event)"></div>
     <div class="cart" #cart>
         @for (product of cartItems; track product.id) {

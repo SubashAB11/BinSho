@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
+import { Themes } from '../../shared/themes';
 
 @Component({
   selector: 'app-product',
@@ -13,4 +14,5 @@ export class ProductComponent {
   @Input({ required: true }) product: Product | undefined;
   @Input() isCart: boolean = false;
   @Input() theme!: string;
+  readonly Themes = Themes;
 }
