@@ -28,8 +28,9 @@ gsap.registerPlugin(ScrollTrigger);
   styleUrls: ['./rack-section.component.scss']
 })
 export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
-  rackSections: Section[] = [];
   readonly Themes = Themes;
+  rackSections: Section[] = [];
+  allThemes = [Themes.TWO_D, Themes.MINIMALIST, Themes.CYBERPUNK];
 
   secId = 0;
   rackId = 0;
@@ -94,9 +95,9 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   createSectionGroup(theme?: string) {
-    const thm =
-      theme ??
-      (Math.random() > 0.5 ? Themes.TWO_D : Math.random() > 0.5 ? Themes.CYBERPUNK : Themes.MINIMALIST);
+    const lastTheme = this.rackSections[this.rackSections.length - 1]?.theme;
+    const availableThemes = this.allThemes.filter(t => t !== lastTheme);
+    const thm = theme ?? availableThemes[Math.floor(Math.random() * availableThemes.length)];
 
     for (let i = 0; i < this.GROUP_SIZE; i++) {
       const section: Section = {
