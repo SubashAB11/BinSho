@@ -48,7 +48,8 @@ export class CartComponent implements AfterViewInit {
 
   openCheckoutDialog() {
     this.dialog.open(CheckoutComponent, {
-      width: '400px',
+      width: '80%',
+      height: '80%',
       data: {
         products: this.cartItems,
         total: this.getTotalPrice()
