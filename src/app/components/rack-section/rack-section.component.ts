@@ -175,7 +175,7 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const thresholdEnd = 800; // px from top for currentThemeEnd
+    const thresholdEnd = 800;
     const position = window.innerHeight + window.scrollY;
     const height = document.body.offsetHeight;
 
@@ -184,7 +184,6 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
     let newThemeEnd = this.currentThemeEnd;
     let newThemeStart = this.currentThemeStart;
 
-    // --- currentThemeStart: first section that is even slightly visible ---
     for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -193,11 +192,10 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
         if (sectionObj && sectionObj.theme !== this.currentThemeStart) {
           newThemeStart = sectionObj.theme;
         }
-        break; // only first visible section
+        break;
       }
     }
 
-    // --- currentThemeEnd: section that is currently at the top threshold ---
     for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect();
       if (rect.top <= thresholdEnd && rect.bottom > thresholdEnd) {
@@ -206,7 +204,7 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
         if (sectionObj && sectionObj.theme !== this.currentThemeEnd) {
           newThemeEnd = sectionObj.theme;
         }
-        break; // only first match
+        break;
       }
     }
 
