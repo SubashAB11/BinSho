@@ -10,7 +10,7 @@ import { Themes } from '../../shared/themes';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
-import { MedivalSectionComponent } from '../medival-section/medival-section.component';
+import { MedievalSectionComponent } from '../medieval-section/medieval-section.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
     CyberpunkSectionComponent,
     CartComponent,
     DragDropModule,
-    MedivalSectionComponent
+    MedievalSectionComponent
   ],
   templateUrl: './rack-section.component.html',
   styleUrls: ['./rack-section.component.scss']
@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly Themes = Themes;
   rackSections: Section[] = [];
-  allThemes = [Themes.TWO_D, Themes.MINIMALIST, Themes.CYBERPUNK, Themes.MEDIVAL];
+  allThemes = [Themes.TWO_D, Themes.MINIMALIST, Themes.CYBERPUNK, Themes.MEDIEVAL];
 
   secId = 0;
   rackId = 0;
@@ -47,7 +47,7 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
     [Themes.TWO_D]: 'assets/images/cart_img_2d.png',
     [Themes.MINIMALIST]: 'assets/images/cart_img_minimalist.png',
     [Themes.CYBERPUNK]: 'assets/images/cart_img_cyberpunk.png',
-    [Themes.MEDIVAL]: 'assets/images/cart_img_medival.png'
+    [Themes.MEDIEVAL]: 'assets/images/cart_img_medieval.png'
   };
 
   triggers: any[] = [];
@@ -133,6 +133,7 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
         image: images[randomIndex],
         price: randomPrice
       });
+      images.splice(randomIndex, 1);
     }
     return products;
   }

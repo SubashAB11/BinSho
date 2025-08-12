@@ -4,12 +4,12 @@ import { Themes } from '../../shared/themes';
 import { RackComponent } from '../rack/rack.component';
 
 @Component({
-  selector: 'app-medival-section',
+  selector: 'app-medieval-section',
   imports: [RackComponent],
-  templateUrl: './medival-section.component.html',
-  styleUrl: './medival-section.component.scss'
+  templateUrl: './medieval-section.component.html',
+  styleUrl: './medieval-section.component.scss'
 })
-export class MedivalSectionComponent {
+export class MedievalSectionComponent {
   @Input({ required: true }) section!: Section;
   readonly Themes = Themes;
 }

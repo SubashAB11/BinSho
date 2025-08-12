@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MedivalSectionComponent } from './medival-section.component';
+import { MedievalSectionComponent } from './medieval-section.component';
 
-describe('MedivalSectionComponent', () => {
-  let component: MedivalSectionComponent;
-  let fixture: ComponentFixture<MedivalSectionComponent>;
+describe('MedievalSectionComponent', () => {
+  let component: MedievalSectionComponent;
+  let fixture: ComponentFixture<MedievalSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MedivalSectionComponent]
+      imports: [MedievalSectionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MedivalSectionComponent);
+    fixture = TestBed.createComponent(MedievalSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
