@@ -1,0 +1,63 @@
+@use '../../shared/variables' as *;
+
+.rack-section-container {
+    height: 101vh;
+    overflow-y: hidden;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: fill;
+    }
+}
+
+.rack-floater {
+    position: absolute;
+    height: 101%;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    top: 0;
+    left: 0;
+}
+
+.left-rack-container,
+.right-rack-container {
+    flex: 1;
+    min-width: 250px;
+    height: 100%;
+    display: flex;
+
+    .rack {
+        height: 100%;
+        width: 50%;
+        box-shadow: -13px 0px 49px 5px $medival-shadow-color;
+        position: relative;
+
+        app-rack {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: fill;
+        }
+    }
+}
+
+.left-rack-container {
+    justify-content: end;
+}
+
+.cart-placeholder {
+    flex: 1.5;
+    min-width: 250px;
+    height: 100%;
+    align-items: center;
+}

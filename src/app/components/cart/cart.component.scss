@@ -79,6 +79,15 @@ app-product {
   border-radius: 10px;
 }
 
+.medival-total {
+  background-color: $medival-primary-color;
+  color: $medival-secondary-color;
+  border: 6px ridge $medival-border-color;
+  font-size: $minimalist-font-size-total;
+  font-weight: $font-weight;
+  border-radius: 10px;
+}
+
 .cyberpunk-total {
   background-color: $cyberpunk-background-color;
   color: $cyberpunk-primary-color;

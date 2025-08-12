@@ -1,23 +1,31 @@
 <div cdkDropListGroup>
-    <ng-container *ngFor="let section of rackSections; trackBy: trackById">
-        <ng-container [ngSwitch]="section.theme">
-            <app-two-d-section *ngSwitchCase="Themes.TWO_D" [ngClass]="'section-' + section.id" [section]="section">
-            </app-two-d-section>
-
-            <app-minimalist-section *ngSwitchCase="Themes.MINIMALIST" [ngClass]="'section-' + section.id"
-                [section]="section">
-            </app-minimalist-section>
-
-            <app-cyberpunk-section *ngSwitchCase="Themes.CYBERPUNK" [ngClass]="'section-' + section.id"
-                [section]="section">
-            </app-cyberpunk-section>
-        </ng-container>
-    </ng-container>
+    @for (section of rackSections; track section.id) {
+    @switch (section.theme) {
+    @case (Themes.TWO_D) {
+    <app-two-d-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-two-d-section>
+    }
+    @case (Themes.MINIMALIST) {
+    <app-minimalist-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-minimalist-section>
+    }
+    @case (Themes.CYBERPUNK) {
+    <app-cyberpunk-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-cyberpunk-section>
+    }
+    @case (Themes.MEDIVAL) {
+    <app-medival-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-medival-section>
+    }
+    }
+    }
 
     <div class="cart-app" aria-hidden="true">
-        <img class="cart-current" [ngClass]="{'minimalist-shadow':currentTheme === Themes.MINIMALIST}"
+        <img class="cart-current"
+            [ngClass]="{'minimalist-shadow': currentTheme === Themes.MINIMALIST, 'medival-shadow': currentTheme === Themes.MEDIVAL}"
             [src]="currentCartImage" alt="cart current" />
-        <img class="cart-next" [ngClass]="{'minimalist-shadow':currentTheme === Themes.MINIMALIST}"
+        <img class="cart-next"
+            [ngClass]="{'minimalist-shadow': currentTheme === Themes.MINIMALIST, 'medival-shadow': currentTheme === Themes.MEDIVAL}"
             [src]="nextCartImage" alt="cart next" />
         <app-cart [totalClass]="`${currentTheme}-total`"></app-cart>
     </div>

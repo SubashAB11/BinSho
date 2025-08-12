@@ -1,0 +1,19 @@
+<div class="rack-section-container">
+    <img class="background-img" src="assets/images/medival_bg1.png" alt="medival background">
+    
+    <div class="rack-floater">
+        <div class="left-rack-container">
+            <div class="rack">
+                <img src="assets/images/medival_rack1.png" alt="medival background">
+                <app-rack [products]="section.leftRack" [rackSide]="'left'" [theme]="Themes.MEDIVAL"></app-rack>
+            </div>
+        </div>
+        <div class="cart-placeholder"></div>
+        <div class="right-rack-container">
+            <div class="rack">
+                <img src="assets/images/medival_rack1.png" alt="medival background">
+                <app-rack [products]="section.rightRack" [rackSide]="'right'" [theme]="Themes.MEDIVAL"></app-rack>
+            </div>
+        </div>
+    </div>
+</div>

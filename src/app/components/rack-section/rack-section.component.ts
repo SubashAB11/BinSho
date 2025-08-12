@@ -10,6 +10,7 @@ import { Themes } from '../../shared/themes';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
+import { MedivalSectionComponent } from '../medival-section/medival-section.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,8 @@ gsap.registerPlugin(ScrollTrigger);
     MinimalistSectionComponent,
     CyberpunkSectionComponent,
     CartComponent,
-    DragDropModule
+    DragDropModule,
+    MedivalSectionComponent
   ],
   templateUrl: './rack-section.component.html',
   styleUrls: ['./rack-section.component.scss']
@@ -30,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly Themes = Themes;
   rackSections: Section[] = [];
-  allThemes = [Themes.TWO_D, Themes.MINIMALIST, Themes.CYBERPUNK];
+  allThemes = [Themes.TWO_D, Themes.MINIMALIST, Themes.CYBERPUNK, Themes.MEDIVAL];
 
   secId = 0;
   rackId = 0;
@@ -44,7 +46,8 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
   themeCartMap: Record<string, string> = {
     [Themes.TWO_D]: 'assets/images/cart_img_2d.png',
     [Themes.MINIMALIST]: 'assets/images/cart_img_minimalist.png',
-    [Themes.CYBERPUNK]: 'assets/images/cart_img_cyberpunk.png'
+    [Themes.CYBERPUNK]: 'assets/images/cart_img_cyberpunk.png',
+    [Themes.MEDIVAL]: 'assets/images/cart_img_medival.png'
   };
 
   triggers: any[] = [];
@@ -116,7 +119,8 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
         ? ['mini1.png', 'mini2.png', 'mini3.png', 'mini4.png', 'mini5.png', 'mini6.png', 'mini7.png']
         : theme === Themes.TWO_D
           ? ['item1.svg', 'item2.svg', 'item3.svg', 'item4.svg', 'item5.svg', 'item6.svg', 'item7.svg', 'item8.svg']
-          : ['cyber1.png', 'cyber2.png', 'cyber3.png', 'cyber4.png', 'cyber5.png', 'cyber6.png', 'cyber7.png', 'cyber8.png'];
+          : theme === Themes.CYBERPUNK ? ['cyber1.png', 'cyber2.png', 'cyber3.png', 'cyber4.png', 'cyber5.png', 'cyber6.png', 'cyber7.png', 'cyber8.png'] :
+            ['medi1.png', 'medi2.png', 'medi3.png', 'medi4.png', 'medi5.png', 'medi6.png'];
 
     const products: Product[] = [];
     for (let i = 0; i < count; i++) {

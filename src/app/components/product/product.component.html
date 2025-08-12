@@ -1,5 +1,5 @@
-@if((isCart || theme === Themes.MINIMALIST) && product) {
-<div [ngClass]="{'cart-image': isCart, 'minimalist-image': theme === Themes.MINIMALIST}"><img
+@if((isCart || theme === Themes.MINIMALIST || theme === Themes.MEDIVAL) && product) {
+<div [ngClass]="{'cart-image': isCart, 'minimalist-image': theme === Themes.MINIMALIST, 'medival-image': theme === Themes.MEDIVAL}"><img
         [src]="`assets/images/${product.image}`" [alt]="product.name" /></div>
 }
 
