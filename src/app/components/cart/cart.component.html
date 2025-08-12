@@ -1,10 +1,18 @@
 <div class="cart-container">
-    <div class="total">₹{{getTotalPrice()}}</div>
+    <div [class]="totalClass + ' total'">₹{{getTotalPrice()}}</div>
     <div class="drop-area" cdkDropList [cdkDropListData]="cartItems" (cdkDropListDropped)="onDrop($event)"></div>
     <div class="cart" #cart>
-        @for (product of cartItems; track product.id) {
-            <app-product [product]="product" [isCart]="true"
-            [style.transform]="`translate(${product.x || 0}px, ${product.y || 0}px)`" cdkDrag cdkDragBoundary=".cart"></app-product>
+        @for (product of cartItems; track product.id + '-' + $index) {
+        <app-product [product]="product" [isCart]="true"
+            [style.transform]="`translate(${product.x || 0}px, ${product.y || 0}px)`" cdkDrag
+            cdkDragBoundary=".cart"></app-product>
         }
+    </div>
+</div>
+
+<div [class]="'slide-button ' + slideClass">
+    <div class="slide-track">
+        <div class="slide-handle">➡</div>
+        <span class="slide-text">Slide to Checkout</span>
     </div>
 </div>

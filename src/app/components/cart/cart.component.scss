@@ -2,32 +2,30 @@
 
 .cart-container {
   width: 100%;
-  height: 85%;
+  height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
 
 .drop-area {
-  width: 100%;
-  height: 80%;
+  width: 87%;
+  height: 89%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: rotateX(30deg) translate(-50%, -50%);
+  border-radius: 5%;
+  top: -17%;
+  transform: rotateX(30deg) translateZ(-100px);
 }
 
 .cart {
-  width: 60%;
-  height: 70%;
+  width: 70%;
+  height: 72%;
   position: relative;
   overflow: hidden;
-  transform: rotateX(30deg);
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
+  transform: rotateX(30deg) translateZ(-50px) translateY(5%);
 }
 
 app-product {
@@ -48,29 +46,190 @@ app-product {
 }
 
 .total {
-  background-color: black;
-  color: $font-white;
   font-family: $font-family;
-  font-size: $font-size-lg;
   font-style: $font-style;
-  font-weight: $font-weight;
   line-height: $line-height;
   position: absolute;
   z-index: 1;
   top: 0;
-  width: 175px;
+  width: fit-content;
+  padding: 0 10%;
   height: 65px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid $border-cart;
-  border-radius: 5px;
 }
 
-// cdk specific
-// .cdk-drop-list-dragging {
-//   background-color: grey;
-//   opacity: 0.5;
-// }
+.two-d-total {
+  border: 5px solid $border-cart;
+  border-radius: 5px;
+  background-color: black;
+  color: $font-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight;
+}
+
+.minimalist-total {
+  background-color: $minimalist-primary-color;
+  color: $minimalist-background-color;
+  font-size: $minimalist-font-size-total;
+  font-weight: $font-weight;
+  border-radius: 10px;
+}
+
+.medieval-total {
+  background-color: $medieval-primary-color;
+  color: $medieval-secondary-color;
+  border: 6px ridge $medieval-border-color;
+  font-size: $minimalist-font-size-total;
+  font-weight: $font-weight;
+  border-radius: 10px;
+}
+
+.cyberpunk-total {
+  background-color: $cyberpunk-background-color;
+  color: $cyberpunk-primary-color;
+  font-size: $cyberpunk-font-size-total;
+  font-weight: $cyberpunk-font-weight;
+  border-radius: 10px;
+  border: 3px solid white;
+  box-shadow: 0 0 5px $cyberpunk-primary-color,
+    0 0 5px $cyberpunk-primary-color,
+    0 0 20px $cyberpunk-primary-color,
+    inset 0 0 5px 2px $cyberpunk-primary-color;
+  text-shadow: 0 0 2px $cyberpunk-primary-color,
+    0 0 2px $cyberpunk-primary-color;
+}
+
+//slide button
+
+.slide-button {
+  position: absolute;
+  bottom: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slide-track {
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-handle {
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.slide-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 50px;
+  pointer-events: none;
+}
+
+.minimalist-slide {
+  .slide-track {
+    width: 400px;
+    height: 50px;
+    background: $minimalist-background-color;
+  }
+
+  .slide-text {
+    color: $minimalist-primary-color;
+  }
+
+  .slide-handle {
+    width: 50px;
+    height: 50px;
+    background: $minimalist-primary-color;
+    color: $minimalist-background-color;
+  }
+}
+
+.cyberpunk-slide {
+  .slide-track {
+    width: 396px;
+    height: 46px;
+    background: $cyberpunk-background-color;
+    border: 2px solid $cyberpunk-product-color;
+  }
+
+  .slide-text {
+    color: white;
+    text-shadow: 0 0 2px $cyberpunk-primary-color,
+      0 0 2px $cyberpunk-primary-color;
+  }
+
+  .slide-handle {
+    width: 44px;
+    height: 42px;
+    border: 3px solid white;
+    box-shadow: 0 0 5px $cyberpunk-primary-color,
+      0 0 5px $cyberpunk-primary-color,
+      0 0 20px $cyberpunk-primary-color,
+      inset 0 0 5px 2px $cyberpunk-primary-color;
+    color: white;
+    text-shadow: 0 0 2px $cyberpunk-primary-color,
+      0 0 2px $cyberpunk-primary-color;
+  }
+}
+
+.medieval-slide {
+  .slide-track {
+    width: 392px;
+    height: 42px;
+    background: $medieval-primary-color;
+    border: 4px ridge $medieval-border-color;
+  }
+
+  .slide-text {
+    color: $medieval-secondary-color;
+  }
+
+  .slide-handle {
+    width: 44px;
+    height: 42px;
+    border-right: 4px ridge $medieval-border-color;
+    border-left: 4px ridge $medieval-border-color;
+    box-shadow: 0 0 5px $medieval-shadow-color;
+    color: $medieval-secondary-color;
+  }
+}
+
+.two-d-slide {
+  .slide-track {
+    width: 396px;
+    height: 46px;
+    background: $background-color;
+    border: 2px solid $border-color;
+  }
+
+  .slide-text {
+    color: $secondary-color;
+  }
+
+  .slide-handle {
+    width: 46px;
+    height: 46px;
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+//cdk specific
+.cdk-drop-list-dragging {
+  background-color: grey;
+  opacity: 0.5;
+}

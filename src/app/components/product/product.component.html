@@ -1,10 +1,12 @@
-@if (!isCart && product) {
-<div class="product-card">
+@if((isCart || theme === Themes.MINIMALIST || theme === Themes.MEDIEVAL) && product) {
+<div [ngClass]="{'cart-image': isCart, 'minimalist-image': theme === Themes.MINIMALIST, 'medieval-image': theme === Themes.MEDIEVAL}"><img
+        [src]="`assets/images/${product.image}`" [alt]="product.name" /></div>
+}
+
+@else if (product) {
+<div class="product-card" [ngClass]="{'two-d-product' : theme === Themes.TWO_D, 'cyber-product' : theme === Themes.CYBERPUNK}">
     <div class="product-price">₹{{ product.price }}</div>
-    <div><img [src]="`assets/images/${product.image}.svg`" [alt]="product.name" /></div>
+    <div><img [src]="`assets/images/${product.image}`" [alt]="product.name" /></div>
     <div class="product-name">{{ product.name }}</div>
 </div>
-}
-@if(isCart && product) {
-<div><img class="cart-image" [src]="`assets/images/${product.image}.svg`" [alt]="product.name" /></div>
 }

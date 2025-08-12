@@ -1,0 +1,41 @@
+@use '../../shared/variables' as *;
+
+.rack-section-container {
+  height: 101vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.2rem;
+  background-color: $minimalist-background-color;
+  background-image:
+    linear-gradient(to left, rgba(0, 0, 0, 0.24) 1px, transparent 2px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.24) 1px, transparent 2px);
+  background-size: 200px 200px;
+}
+
+.left-rack-container,
+.right-rack-container {
+  flex: 1;
+  min-width: 250px;
+  height: 100%;
+  display: flex;
+
+  .rack {
+    height: 100%;
+    width: 50%;
+    background-color: $minimalist-primary-color;
+    box-shadow: -6px 1px 14px 8px $minimalist-shadow-color;
+  }
+}
+
+.left-rack-container {
+  justify-content: end;
+}
+
+.cart-placeholder {
+  flex: 1.5;
+  min-width: 250px;
+  height: 100%;
+  align-items: center;
+}

@@ -1,29 +1,32 @@
 <div cdkDropListGroup>
-    <div class="cart-app">
-        <img src="assets/images/cart_img.png" alt="cart-image">
-        <app-cart></app-cart>
-    </div>
-    @for (section of rackSections; track section) {
-    <div class="rack-section-container">
-        <div class="left-rack-container">
-            <div class="rack-pillar">
-                <div class="pillar"></div>
-                <div class="pillar"></div>
-            </div>
-            <div class="rack">
-                <app-rack [products]="section.leftRack" [rackSide]="'left'"></app-rack>
-            </div>
-        </div>
-        <div class="cart-placeholder"></div>
-        <div class="right-rack-container">
-            <div class="rack">
-                <app-rack [products]="section.rightRack" [rackSide]="'right'"></app-rack>
-            </div>
-            <div class="rack-pillar">
-                <div class="pillar"></div>
-                <div class="pillar"></div>
-            </div>
-        </div>
-    </div>
+    @for (section of rackSections; track section.id) {
+    @switch (section.theme) {
+    @case (Themes.TWO_D) {
+    <app-two-d-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-two-d-section>
     }
+    @case (Themes.MINIMALIST) {
+    <app-minimalist-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-minimalist-section>
+    }
+    @case (Themes.CYBERPUNK) {
+    <app-cyberpunk-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-cyberpunk-section>
+    }
+    @case (Themes.MEDIEVAL) {
+    <app-medieval-section [ngClass]="'section-' + section.id" [section]="section">
+    </app-medieval-section>
+    }
+    }
+    }
+
+    <div class="cart-app" aria-hidden="true">
+        <img class="cart-current"
+            [ngClass]="{'minimalist-shadow': currentThemeEnd === Themes.MINIMALIST, 'medieval-shadow': currentThemeEnd === Themes.MEDIEVAL}"
+            [src]="currentCartImage" alt="cart current" />
+        <img class="cart-next"
+            [ngClass]="{'minimalist-shadow': currentThemeEnd === Themes.MINIMALIST, 'medieval-shadow': currentThemeEnd === Themes.MEDIEVAL}"
+            [src]="nextCartImage" alt="cart next" />
+        <app-cart [totalClass]="`${currentThemeStart}-total`" [slideClass]="`${currentThemeEnd}-slide`"></app-cart>
+    </div>
 </div>

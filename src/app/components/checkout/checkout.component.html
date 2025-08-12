@@ -1,0 +1,22 @@
+<div class="checkout-container">
+    <div class="close-button">
+        <button mat-icon-button (click)="closeDialog()" aria-label="Close">
+            ✖
+        </button>
+    </div>
+    <div class="checkout-text">
+        <h2>Checkout</h2>
+    </div>
+
+    <div class="items-list">
+        @for (p of finalProducts; track p.id) {
+        <div>
+            {{ p.name }} x {{ p.quantity }} x {{ p.price | currency }}
+        </div>
+        }
+    </div>
+
+    <div class="total-footer">
+        <h3>Total: {{ data.total | currency }}</h3>
+    </div>
+</div>
