@@ -41,7 +41,8 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   currentCartImage = '';
   nextCartImage = '';
-  currentTheme: string = Themes.MINIMALIST;
+  currentThemeEnd: string = Themes.MINIMALIST;
+  currentThemeStart: string = Themes.MINIMALIST;
 
   themeCartMap: Record<string, string> = {
     [Themes.TWO_D]: 'assets/images/cart_img_2d.png',
@@ -174,34 +175,55 @@ export class RackSectionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const threshold = 100;
+    const thresholdEnd = 800; // px from top for currentThemeEnd
     const position = window.innerHeight + window.scrollY;
     const height = document.body.offsetHeight;
 
     const sections = document.querySelectorAll<HTMLElement>('[class^="section-"]');
-    let newTheme = this.currentTheme;
 
+    let newThemeEnd = this.currentThemeEnd;
+    let newThemeStart = this.currentThemeStart;
+
+    // --- currentThemeStart: first section that is even slightly visible ---
     for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect();
-      if (rect.top <= 50 && rect.bottom > 50) {
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
         const sectionId = parseInt(sections[i].className.match(/section-(\d+)/)?.[1] || '', 10);
         const sectionObj = this.rackSections.find(s => s.id === sectionId);
-        if (sectionObj && sectionObj.theme !== this.currentTheme) {
-          newTheme = sectionObj.theme;
+        if (sectionObj && sectionObj.theme !== this.currentThemeStart) {
+          newThemeStart = sectionObj.theme;
         }
-        break;
+        break; // only first visible section
       }
     }
 
-    if (newTheme !== this.currentTheme) {
-      this.currentTheme = newTheme;
-      this.cd.detectChanges(); // Update <app-cart>
+    // --- currentThemeEnd: section that is currently at the top threshold ---
+    for (let i = 0; i < sections.length; i++) {
+      const rect = sections[i].getBoundingClientRect();
+      if (rect.top <= thresholdEnd && rect.bottom > thresholdEnd) {
+        const sectionId = parseInt(sections[i].className.match(/section-(\d+)/)?.[1] || '', 10);
+        const sectionObj = this.rackSections.find(s => s.id === sectionId);
+        if (sectionObj && sectionObj.theme !== this.currentThemeEnd) {
+          newThemeEnd = sectionObj.theme;
+        }
+        break; // only first match
+      }
     }
 
-    if (position >= height - threshold) {
+    if (newThemeStart !== this.currentThemeStart) {
+      this.currentThemeStart = newThemeStart;
+      this.cd.detectChanges();
+    }
+    if (newThemeEnd !== this.currentThemeEnd) {
+      this.currentThemeEnd = newThemeEnd;
+      this.cd.detectChanges();
+    }
+
+    if (position >= height - 100) {
       this.ngZone.run(() => this.loadNextLogicalSection());
     }
   }
+
 
   loadNextLogicalSection() {
     this.createSectionGroup();

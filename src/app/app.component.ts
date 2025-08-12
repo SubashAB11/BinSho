@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         checkIfAllLoaded();
       } else {
         img.addEventListener('load', checkIfAllLoaded);
-        img.addEventListener('error', checkIfAllLoaded); // still proceed on error
+        img.addEventListener('error', checkIfAllLoaded);
       }
     });
   }

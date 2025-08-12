@@ -103,6 +103,131 @@ app-product {
     0 0 2px $cyberpunk-primary-color;
 }
 
+//slide button
+
+.slide-button {
+  position: absolute;
+  bottom: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slide-track {
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-handle {
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.slide-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 50px;
+  pointer-events: none;
+}
+
+.minimalist-slide {
+  .slide-track {
+    width: 400px;
+    height: 50px;
+    background: $minimalist-background-color;
+  }
+
+  .slide-text {
+    color: $minimalist-primary-color;
+  }
+
+  .slide-handle {
+    width: 50px;
+    height: 50px;
+    background: $minimalist-primary-color;
+    color: $minimalist-background-color;
+  }
+}
+
+.cyberpunk-slide {
+  .slide-track {
+    width: 396px;
+    height: 46px;
+    background: $cyberpunk-background-color;
+    border: 2px solid $cyberpunk-product-color;
+  }
+
+  .slide-text {
+    color: white;
+    text-shadow: 0 0 2px $cyberpunk-primary-color,
+      0 0 2px $cyberpunk-primary-color;
+  }
+
+  .slide-handle {
+    width: 44px;
+    height: 42px;
+    border: 3px solid white;
+    box-shadow: 0 0 5px $cyberpunk-primary-color,
+      0 0 5px $cyberpunk-primary-color,
+      0 0 20px $cyberpunk-primary-color,
+      inset 0 0 5px 2px $cyberpunk-primary-color;
+    color: white;
+    text-shadow: 0 0 2px $cyberpunk-primary-color,
+      0 0 2px $cyberpunk-primary-color;
+  }
+}
+
+.medieval-slide {
+  .slide-track {
+    width: 392px;
+    height: 42px;
+    background: $medieval-primary-color;
+    border: 4px ridge $medieval-border-color;
+  }
+
+  .slide-text {
+    color: $medieval-secondary-color;
+  }
+
+  .slide-handle {
+    width: 44px;
+    height: 42px;
+    border-right: 4px ridge $medieval-border-color;
+    border-left: 4px ridge $medieval-border-color;
+    box-shadow: 0 0 5px $medieval-shadow-color;
+    color: $medieval-secondary-color;
+  }
+}
+
+.two-d-slide {
+  .slide-track {
+    width: 396px;
+    height: 46px;
+    background: $background-color;
+    border: 2px solid $border-color;
+  }
+
+  .slide-text {
+    color: $secondary-color;
+  }
+
+  .slide-handle {
+    width: 46px;
+    height: 46px;
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
 //cdk specific
 .cdk-drop-list-dragging {
   background-color: grey;

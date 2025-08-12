@@ -22,11 +22,11 @@
 
     <div class="cart-app" aria-hidden="true">
         <img class="cart-current"
-            [ngClass]="{'minimalist-shadow': currentTheme === Themes.MINIMALIST, 'medieval-shadow': currentTheme === Themes.MEDIEVAL}"
+            [ngClass]="{'minimalist-shadow': currentThemeEnd === Themes.MINIMALIST, 'medieval-shadow': currentThemeEnd === Themes.MEDIEVAL}"
             [src]="currentCartImage" alt="cart current" />
         <img class="cart-next"
-            [ngClass]="{'minimalist-shadow': currentTheme === Themes.MINIMALIST, 'medieval-shadow': currentTheme === Themes.MEDIEVAL}"
+            [ngClass]="{'minimalist-shadow': currentThemeEnd === Themes.MINIMALIST, 'medieval-shadow': currentThemeEnd === Themes.MEDIEVAL}"
             [src]="nextCartImage" alt="cart next" />
-        <app-cart [totalClass]="`${currentTheme}-total`"></app-cart>
+        <app-cart [totalClass]="`${currentThemeStart}-total`" [slideClass]="`${currentThemeEnd}-slide`"></app-cart>
     </div>
 </div>

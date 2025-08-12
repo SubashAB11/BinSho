@@ -1,9 +1,15 @@
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ProductComponent } from '../product/product.component';
 import { timer } from 'rxjs';
 import { AppService } from '../../services/app.service';
+import { CheckoutComponent } from '../checkout/checkout.component';
+import gsap from 'gsap';
+import Draggable from 'gsap/Draggable';
+import { MatDialog } from '@angular/material/dialog';
+
+gsap.registerPlugin(Draggable);
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +17,44 @@ import { AppService } from '../../services/app.service';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements AfterViewInit {
   @Input({ required: true }) totalClass!: string;
+  @Input({ required: true }) slideClass!: string;
   @ViewChild('cart', { static: true }) cartElement!: ElementRef;
 
   cartItems: any[] = [];
 
-  constructor(private appService: AppService, private renderer: Renderer2) { }
+  constructor(private appService: AppService, private renderer: Renderer2, private dialog: MatDialog) { }
+
+  ngAfterViewInit(): void {
+    const track = document.querySelector('.slide-track') as HTMLElement;
+    const handle = document.querySelector('.slide-handle') as HTMLElement;
+    const maxX = track.offsetWidth - handle.offsetWidth;
+
+    const self = this;
+
+    Draggable.create(handle, {
+      type: 'x',
+      bounds: track,
+      inertia: true,
+      onDragEnd: function (this: any) {
+        if (this['x'] >= maxX - 2) {
+          self.openCheckoutDialog();
+        }
+        gsap.to(handle, { x: 0, duration: 0.3 });
+      }
+    });
+  }
+
+  openCheckoutDialog() {
+    this.dialog.open(CheckoutComponent, {
+      width: '400px',
+      data: {
+        products: this.cartItems,
+        total: this.getTotalPrice()
+      }
+    });
+  }
 
   getTotalPrice(): number {
     return parseInt(this.cartItems.reduce((sum, item) => sum + (item ? item.price : 0), 0));
